@@ -5,11 +5,13 @@ export default class Validates {
     }
     static dateController (el) {
         el.addEventListener('keypress', (event) => { 
-            if(el.value.length === 10) event.preventDefault();
+            const keyNotANumber = event.keyCode > 57 || event.keyCode < 48;
+            const lengthInput = el.value.length === 10
+            if(keyNotANumber || lengthInput) event.preventDefault();
             if(el.value.length === 2 || el.value.length === 5) el.value += '/';
-        })
+        });
     }
     static inputFilled (inputs) {
-        inputs.map(input => {if(input.value === '') throw new Error('Input Empty')})      
+        inputs.map((input, i) => {if(input.value === '') throw new Error(`Input Empty ${i}`)})      
     }
 }

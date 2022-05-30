@@ -1,28 +1,20 @@
 import Apperance from "./functions/Apperance.js";
 import Table from "./functions/Table.js";
 import Validates from "./Validates/Validate.js";
-const task = document.getElementById('tarefa');
-const date = document.getElementById('dia');
-const button = document.getElementById('button');
-const description = document.getElementById('description');
-const tbody = document.getElementById('tbody');
-const storage = []
+const header = document.getElementById('header');
+const table = document.getElementById('table')
 
-Validates.dateController(date)
+const titles = ['Name', 'Weigth', 'Birthday#'];
 
-button.addEventListener('click', (event) => {
+const create = Table.createForm(header,titles);
+
+for(let i = 0; i < create[1].length; i++)
+if((create[1][i].id).includes('#')) Validates.dateController(create[1][i])
+
+create[0].addEventListener('click', (event) => {
     event.preventDefault();
-    try {
-        Validates.inputFilled([task,date,description]);
-        Validates.dateFormat(date.value);
-        Table.lineCreate([task,date,description],tbody,storage);
-        Apperance.setBackground(date,'white');
-        Apperance.setBackground(task,'white');
-    }catch (err) {
-        if(err.message === 'Invalid Date Format') Apperance.setBackground(date,'red');
-        if(err.message === 'Input Empty') {
-            Apperance.setBackground(date,'red');
-            Apperance.setBackground(task,'red');
-        };
-    }
+    create[1].map(a => {
+        const value = a.value;
+        if(a.getAttribute('id').includes('#')) console.log(a.getAttribute('id'));
+    })
 });
