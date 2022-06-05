@@ -12,6 +12,9 @@ export default class Validates {
         });
     }
     static inputFilled (inputs) {
-        inputs.map((input, i) => {if(input.value === '') throw new Error(`Input Empty ${i}`)})      
+        inputs.map((input, i) => {
+            if(input.value === '') throw new Error(`Input Empty ${i + 1}`)
+            if(input.getAttribute('id').includes('#')) this.dateFormat(input.value);
+        })      
     }
 }

@@ -4,7 +4,7 @@ export default class Create {
         let inputs = elements.map((a,i) => {
             let text = /((?!#).)*/.exec(a)[0]
             let label = this.createElement(form, 'label', i.toString(), text);
-            let input = this.createElement(label, 'input', a);
+            let input = this.createElement(label, 'input', a + 'input');
             input.setAttribute('placeholder', text)
             return input
         });
@@ -19,7 +19,7 @@ export default class Create {
         let tr = this.createElement(tHead,'tr');
         elements.map((a,i) => {
             let text = /((?!#).)*/.exec(a)[0]
-            let th = this.createElement(tr, 'th', i.toString());
+            let th = this.createElement(tr, 'th', i.toString() + 'Title');
             this.createElement(th, 'p', a, text);
         })
         let tbody = this.createElement(table,'tbody');
